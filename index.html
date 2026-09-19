@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="pageTitle">أكاديمية ميدو | تعليم القرآن الكريم والهوية العربية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Almarai:wght@300;400;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<!-- إضافة مكتبة أيقونات FontAwesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+  :root{
+    --primary:#00bcd4;       
+    --primary-dark:#00838f;  
+    --accent:#f97316;        
+    --accent-hover:#ea580c;
+    --ink:#0f172a;           
+    --paper:#f8fafc;         
+    --paper-2:#ffffff;       
+    --text-dark:#1e293b;
+    --text-mute:#64748b;
+    --line:#e2e8f0;
+    --white:#ffffff;
+    --radius:20px;
+    --display:'Cairo', sans-serif;
+    --body:'Almarai', sans-serif;
+    --mono:'JetBrains Mono', monospace;
+    --hero-bg: #0f172a;
+    --footer-bg: #0f172a;
+    --subscribe-bg: linear-gradient(135deg, #0b0f19 0%, #1e293b 100%);
+  }
+
+  /* الوضع الداكن (Dark Mode) */
+  body.dark-mode {
+    --paper: #0b0f19;
+    --paper-2: #111827;
+    --text-dark: #f3f4f6;
+    --text-mute: #9ca3af;
+    --line: #1f2937;
+    --ink: #f8fafc;
+    --hero-bg: #030712;
+    --footer-bg: #030712;
+    --subscribe-bg: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--body);
+    background:var(--paper);
+    color:var(--text-dark);
+    line-height:1.7;
+    overflow-x:hidden;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  button{font-family:inherit; cursor:pointer; border:none;}
+  .container{max-width:1180px; margin:0 auto; padding:0 24px;}
+  ::selection{background:var(--primary); color:var(--white);}
+ 
+  a:focus-visible, button:focus-visible, input:focus-visible{
+    outline:3px solid var(--accent); outline-offset:3px;
+  }
+ 
+  header{
+    position:sticky; top:0; z-index:100;
+    background:var(--paper-2);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+    gap: 16px;
+  }
+  .brand{display:flex; align-items:center; gap:12px; font-family:var(--display); font-weight:800; font-size:1.25rem; color:var(--text-dark);}
+  .brand-mark{
+    width:44px; height:44px; border-radius:14px;
+    background:linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color:var(--white);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.2rem;
+    box-shadow:0 4px 12px rgba(0, 188, 212, 0.3);
+  }
+  .nav-links{display:flex; gap:28px; font-weight:700; font-size:.92rem;}
+  .nav-links a{position:relative; padding:6px 0; color:var(--text-dark); transition:color .2s;}
+  .nav-links a:hover{color:var(--primary);}
+  .nav-links a::after{
+    content:''; position:absolute; bottom:0; width:0; height:2px;
+    background:var(--primary); transition:width .25s ease;
+  }
+  html[dir="rtl"] .nav-links a::after { right: 0; left: auto; }
+  html[dir="ltr"] .nav-links a::after { left: 0; right: auto; }
+  .nav-links a:hover::after{width:100%;}
+  
+  .nav-cta{
+    display:flex; 
+    align-items:center; 
+    gap:10px;
+    flex-wrap: nowrap;
+  }
+  
+  .lang-toggle-btn {
+    height: 38px; padding: 0 12px; border-radius: 99px;
+    background: var(--paper); border: 1px solid var(--line); color: var(--text-dark);
+    display: flex; align-items: center; gap: 6px; cursor: pointer;
+    font-family: var(--display); font-weight: 800; font-size: 0.8rem;
+    transition: all 0.2s ease;
+  }
+  .lang-toggle-btn:hover { background: rgba(0,188,212,0.1); color: var(--primary); border-color: var(--primary); }
+
+  .theme-toggle-btn {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: linear-gradient(135deg, #f59e0b, #f97316);
+    border: none; color: #ffffff; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
+    position: relative; overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  body.dark-mode .theme-toggle-btn {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.3);
+  }
+  .theme-toggle-btn:hover { transform: scale(1.1) rotate(15deg); }
+  .theme-toggle-btn i { font-size: 1.1rem; transition: transform 0.6s ease; }
+  .theme-toggle-btn.rotating i { transform: rotate(360deg) scale(0.7); opacity: 0.4; }
+
+  .btn-login-custom {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 9px 16px;
+    border-radius: 99px;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 0.85rem;
+    background: transparent;
+    color: var(--text-dark);
+    border: 1.5px solid var(--line);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  .btn-login-custom:hover {
+    background: rgba(0, 188, 212, 0.08);
+    color: var(--primary);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+  }
+
+  .btn-trial-custom {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 18px;
+    border-radius: 99px;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 0.85rem;
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  .btn-trial-custom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(249, 115, 22, 0.45);
+  }
+
+  .menu-toggle{display:none; background:none; font-size:1.6rem; color:var(--text-dark);}
+ 
+  .hero{
+    position:relative;
+    background:var(--hero-bg);
+    color:var(--paper);
+    padding:100px 0 80px;
+    overflow:hidden;
+    transition: background 0.3s ease;
+  }
+  .hero::before{
+    content:'';
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(0, 188, 212, 0.25), transparent 45%),
+      radial-gradient(circle at 90% 80%, rgba(249, 115, 22, 0.2), transparent 45%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    position:relative; z-index:1;
+    display:grid; grid-template-columns:1.1fr .9fr; gap:50px; align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--mono); font-size:.78rem; letter-spacing:.06em;
+    color:var(--primary); background:rgba(0, 188, 212, 0.12);
+    border:1px solid rgba(0, 188, 212, 0.3);
+    padding:7px 16px; border-radius:999px; margin-bottom:22px;
+  }
+  .eyebrow .dot{width:6px; height:6px; border-radius:50%; background:var(--primary); box-shadow:0 0 0 4px rgba(0, 188, 212, 0.25);}
+  .hero h1{
+    font-family:var(--display); font-weight:900; font-size:clamp(2.2rem, 4.2vw, 3.4rem);
+    line-height:1.25; margin-bottom:20px; color: var(--white);
+  }
+  .hero h1 span{color:var(--primary);}
+  .hero p.lead{
+    font-size:1.1rem; color:rgba(255, 255, 255, 0.78); max-width:540px; margin-bottom:32px;
+  }
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:44px;}
+  .stat-row{display:flex; gap:36px; flex-wrap:wrap;}
+  .stat b{display:block; font-family:var(--display); font-size:1.8rem; font-weight:800; color:var(--white);}
+  .stat span{font-size:.85rem; color:rgba(255, 255, 255, 0.6);}
+ 
+  .character-visual{position:relative; display:flex; align-items:center; justify-content:center;}
+  .character-card{
+    background:rgba(255, 255, 255, 0.05); border:1px solid rgba(255, 255, 255, 0.12);
+    border-radius:28px; padding:24px; backdrop-filter:blur(16px);
+    text-align:center; position:relative; max-width:360px;
+    box-shadow:0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+  .character-card img{
+    border-radius:20px; margin-bottom:18px; width:100%; object-fit:cover;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+  }
+  .float-tag{
+    position:absolute; background:var(--paper-2); color:var(--text-dark);
+    font-family:var(--display); font-weight:800; font-size:.82rem;
+    padding:10px 16px; border-radius:14px; box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    animation:floaty 4s ease-in-out infinite;
+    border:1px solid var(--line);
+  }
+  html[dir="rtl"] .float-tag.t1{top:8%; right:-18%;}
+  html[dir="ltr"] .float-tag.t1{top:8%; left:-18%;}
+  html[dir="rtl"] .float-tag.t2{bottom:15%; left:-18%;}
+  html[dir="ltr"] .float-tag.t2{bottom:15%; right:-18%;}
+
+  @keyframes floaty{0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);}}
+ 
+  .section{padding:90px 0;}
+  .section-head{max-width:640px; margin-bottom:52px;}
+  .section-tag{
+    font-family:var(--mono); font-size:.78rem; color:var(--primary-dark);
+    text-transform:uppercase; letter-spacing:.08em; margin-bottom:12px; display:block; font-weight:700;
+  }
+  .section-head h2{
+    font-family:var(--display); font-weight:800; font-size:clamp(1.8rem, 3vw, 2.5rem);
+    color:var(--text-dark); margin-bottom:14px;
+  }
+  .section-head p{color:var(--text-mute); font-size:1.02rem;}
+ 
+  .tracks-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;
+  }
+  .track-card{
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:32px 26px;
+    position:relative;
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    overflow:hidden;
+    box-shadow:0 4px 6px -1px rgba(0,0,0,0.02);
+  }
+  .track-card::before{
+    content:'';
+    position:absolute; top:0; width:80px; height:80px;
+    background:var(--primary); opacity:0.1;
+  }
+  html[dir="rtl"] .track-card::before{ right:0; border-radius:0 0 0 80px; }
+  html[dir="ltr"] .track-card::before{ left:0; border-radius:0 0 80px 0; }
+
+  .track-card:hover{transform:translateY(-8px); box-shadow:0 20px 40px rgba(0,188,212,0.12); border-color:var(--primary);}
+  .track-card:hover::before{opacity:0.2;}
+  .track-card .num{
+    font-family:var(--mono); font-size:.85rem; color:var(--primary-dark); font-weight:700;
+  }
+  .track-card .sym{
+    font-family:var(--display); font-weight:900; font-size:1.8rem; color:var(--text-dark);
+    margin:10px 0 6px;
+  }
+  .track-card .name{font-weight:800; font-size:1.1rem; margin-bottom:8px; color:var(--text-dark);}
+  .track-card .desc{color:var(--text-mute); font-size:.88rem; margin-bottom:24px;}
+  .track-card .meta{
+    display:flex; justify-content:space-between; align-items:center;
+    border-top:1px dashed var(--line); padding-top:16px; font-size:.85rem;
+  }
+  .track-card .meta b{color:var(--primary-dark); font-family:var(--mono);}
+  .track-card a.go{color:var(--primary-dark); font-weight:800; transition:color .2s;}
+  .track-card a.go:hover{color:var(--accent);}
+ 
+  .features{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  .feature-card{
+    background:var(--paper-2); border-radius:var(--radius); padding:28px 22px;
+    border:1px solid var(--line);
+    box-shadow:0 4px 6px -1px rgba(0,0,0,0.02);
+    transition:transform .2s;
+  }
+  .feature-card:hover{transform:translateY(-4px);}
+  .feature-icon{
+    width:50px; height:50px; border-radius:14px; background:rgba(0,188,212,0.12);
+    color:var(--primary-dark); display:flex; align-items:center; justify-content:center;
+    font-family:var(--display); font-weight:800; margin-bottom:18px; font-size:1.2rem;
+  }
+  .feature-card h3{font-family:var(--display); font-size:1.05rem; margin-bottom:8px; color:var(--text-dark);}
+  .feature-card p{font-size:.88rem; color:var(--text-mute);}
+ 
+  .about-grid{display:grid; grid-template-columns:.9fr 1.1fr; gap:56px; align-items:center;}
+  .about-img-box{
+    border-radius:24px;
+    background:linear-gradient(135deg, var(--primary), var(--ink));
+    position:relative; overflow:hidden; padding:16px; text-align:center;
+    box-shadow:0 20px 40px rgba(0,188,212,0.2);
+  }
+  .about-img-box img{border-radius:18px; width:100%;}
+  .credentials{display:flex; flex-wrap:wrap; gap:12px; margin:22px 0 28px;}
+  .cred-pill{
+    background:var(--paper-2); border:1px solid var(--line); border-radius:999px;
+    padding:10px 18px; font-size:.85rem; font-weight:700; color:var(--text-dark);
+    box-shadow:0 2px 4px rgba(0,0,0,0.02);
+  }
+ 
+  .results-strip{
+    background:var(--accent); padding:20px 0; overflow:hidden;
+    box-shadow:inset 0 4px 10px rgba(0,0,0,0.08);
+  }
+  .marquee{display:flex; gap:60px; white-space:nowrap; animation:scroll 25s linear infinite; width:max-content;}
+  .marquee span{font-family:var(--display); font-weight:800; color:var(--white); font-size:1.05rem; text-shadow:0 2px 4px rgba(0,0,0,0.15);}
+  @keyframes scroll{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+ 
+  .testimonials{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .t-card{
+    background:var(--paper-2); border:1px solid var(--line); border-radius:var(--radius); padding:28px; color:var(--text-dark);
+    box-shadow:0 4px 6px -1px rgba(0,0,0,0.02);
+  }
+  .t-card .stars{color:#f59e0b; letter-spacing:2px; margin-bottom:14px;}
+  .t-card p{font-size:.92rem; color:var(--text-mute); margin-bottom:20px;}
+  .t-who{display:flex; align-items:center; gap:12px;}
+  .t-avatar{
+    width:42px; height:42px; border-radius:50%; background:var(--primary);
+    display:flex; align-items:center; justify-content:center; font-weight:800; color:var(--white);
+    font-family:var(--display);
+  }
+  .t-who b{display:block; font-size:.9rem; color:var(--text-dark);}
+  .t-who span{font-size:.78rem; color:var(--text-mute);}
+ 
+  .faq-list{max-width:760px;}
+  .faq-item{border-bottom:1px solid var(--line); padding:22px 0;}
+  .faq-q{
+    display:flex; justify-content:space-between; align-items:center; gap:16px;
+    font-family:var(--display); font-weight:700; font-size:1.05rem; color:var(--text-dark);
+    width:100%; background:none; cursor:pointer;
+  }
+  html[dir="rtl"] .faq-q { text-align: right; }
+  html[dir="ltr"] .faq-q { text-align: left; }
+
+  .faq-q .plus{
+    flex-shrink:0; width:34px; height:34px; border-radius:50%; border:1.5px solid var(--line);
+    display:flex; align-items:center; justify-content:center; font-size:0.8rem; 
+    transition:all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background:var(--paper-2); color:var(--text-mute);
+  }
+  .faq-item.open .plus{
+    transform:rotate(180deg); 
+    background:var(--primary); 
+    border-color:var(--primary); 
+    color:var(--white);
+    box-shadow:0 4px 12px rgba(0, 188, 212, 0.3);
+  }
+  .faq-a{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+  .faq-a p{padding-top:14px; color:var(--text-mute); font-size:.94rem; max-width:640px;}
+  .faq-item.open .faq-a{max-height:200px;}
+ 
+  /* تصميم قسم الحجز المطابق للصورة تماماً */
+  .subscribe{
+    background: var(--subscribe-bg);
+    border-radius:28px; 
+    padding:60px 44px; 
+    color:var(--white);
+    display:flex; 
+    flex-direction:column; 
+    align-items:center; 
+    text-align:center; 
+    gap:28px;
+    position:relative; 
+    overflow:hidden;
+    box-shadow:0 25px 50px -12px rgba(0,0,0,0.3);
+    border:1px solid rgba(255, 255, 255, 0.08);
+    transition: background 0.3s ease;
+  }
+  .subscribe::before{
+    content:''; position:absolute; width:350px; height:350px; border-radius:50%;
+    background:radial-gradient(circle, rgba(0, 188, 212, 0.25) 0%, transparent 70%);
+    top:-120px; left:50%; transform:translateX(-50%); filter:blur(50px);
+    pointer-events:none;
+  }
+  .subscribe h2{
+    font-family:var(--display); 
+    font-weight:900; 
+    font-size:clamp(1.8rem, 3vw, 2.6rem); 
+    margin-bottom:14px; 
+    color: #ffffff;
+    line-height: 1.3;
+  }
+  .subscribe p{
+    color:rgba(255,255,255,0.75); 
+    margin:0 auto; 
+    max-width:580px; 
+    font-size:1.05rem;
+    line-height: 1.6;
+  }
+  .subscribe-actions{
+    display:flex; 
+    gap:16px; 
+    justify-content:center; 
+    align-items: center;
+    flex-wrap:wrap; 
+    margin-top:8px;
+  }
+
+  /* أزرار قسم الحجز الجديدة المتطابقة تماماً مع الصورة */
+  .btn-sub-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 24px;
+    border-radius: 99px;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 0.95rem;
+    background: transparent;
+    color: #ffffff;
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  .btn-sub-outline:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+  }
+  .btn-sub-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 26px;
+    border-radius: 99px;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 0.95rem;
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  .btn-sub-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(249, 115, 22, 0.6);
+  }
+ 
+  footer{
+    background: var(--footer-bg);
+    color:rgba(255,255,255,0.65); padding:60px 0 30px; border-top:1px solid var(--line);
+    transition: background 0.3s ease;
+  }
+  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:36px; margin-bottom:45px;}
+  .footer-grid h4{color:var(--white); font-family:var(--display); font-size:1rem; margin-bottom:18px;}
+  .footer-grid li{margin-bottom:12px; font-size:.88rem;}
+  .footer-grid li a{transition:color .2s; display:inline-flex; align-items:center;}
+  .footer-grid li a:hover{color:var(--primary);}
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,0.1); padding-top:24px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; font-size:.82rem;
+  }
+
+  /* ويدجت الدعم الفني والشات العائم */
+  .support-widget-wrapper {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .floating-action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .float-action-btn {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 1.4rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    border: none;
+    transition: transform 0.2s, background-color 0.2s;
+  }
+  .float-action-btn:hover { transform: scale(1.1); }
+  .whatsapp-btn { background-color: #25d366; }
+  .chat-btn { background-color: #7c3aed; }
+
+  .live-chat-modal {
+    position: absolute;
+    bottom: 70px;
+    left: 0;
+    width: 380px;
+    max-height: 580px;
+    background: var(--paper-2);
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25);
+    border: 1px solid var(--line);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: scale(0.9);
+    transform-origin: bottom left;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .live-chat-modal.active {
+    transform: scale(1);
+    opacity: 1;
+    visibility: visible;
+  }
+  .chat-header {
+    background-color: #7c3aed;
+    color: #ffffff;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .chat-header-info {
+    display: flex;
+    flex-direction: column;
+  }
+  .chat-header-title {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 1.05rem;
+  }
+  .chat-header-sub {
+    font-size: 0.78rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .chat-header-controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-size: 1.1rem;
+    cursor: pointer;
+  }
+  .chat-header-controls i:hover { opacity: 0.8; }
+  .chat-body {
+    padding: 20px;
+    background: var(--paper);
+    overflow-y: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 480px;
+  }
+  .chat-bubble {
+    background: var(--paper-2);
+    padding: 12px 16px;
+    border-radius: 16px;
+    border-top-left-radius: 4px;
+    font-size: 0.88rem;
+    color: var(--text-dark);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    border: 1px solid var(--line);
+    line-height: 1.5;
+    max-width: 90%;
+  }
+  .chat-login-box {
+    background: var(--paper-2);
+    border-radius: 18px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 6px;
+  }
+  .chat-login-box input {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: var(--paper);
+    color: var(--text-dark);
+    font-family: var(--body);
+    font-size: 0.88rem;
+  }
+  .chat-login-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    background: #7c3aed;
+    color: #ffffff;
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .chat-login-btn:hover { background: #6d28d9; }
+ 
+  @media (max-width:920px){
+    .hero-grid{grid-template-columns:1fr;}
+    .character-visual{order:-1; margin-bottom:20px;}
+    .about-grid{grid-template-columns:1fr;}
+    .tracks-grid{grid-template-columns:repeat(2,1fr);}
+    .features{grid-template-columns:repeat(2,1fr);}
+    .testimonials{grid-template-columns:1fr;}
+    .subscribe{padding:40px 26px;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:680px){
+    .nav-links{display:none;}
+    .menu-toggle{display:block;}
+    .tracks-grid{grid-template-columns:1fr;}
+    .features{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr;}
+    .live-chat-modal { width: calc(100vw - 32px); left: -10px; }
+  }
+</style>
+</head>
+<body>
+ 
+<header>
+  <div class="nav container">
+    <div class="brand">
+      <div class="brand-mark">
+        <i class="fa-solid fa-graduation-cap"></i>
+      </div>
+      <span data-i18n="brandName">أكاديمية ميدو</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#tracks" data-i18n="navTracks">المسارات التعليمية</a>
+      <a href="#features" data-i18n="navFeatures">مميزات المنصة</a>
+      <a href="#about" data-i18n="navAbout">قصة ميدو</a>
+      <a href="#faq" data-i18n="navFaq">الأسئلة الشائعة</a>
+    </nav>
+    <div class="nav-cta">
+      <button class="lang-toggle-btn" onclick="toggleLanguage()" title="Switch Language">
+        <i class="fa-solid fa-globe"></i> <span id="langText">EN</span>
+      </button>
+
+      <button class="theme-toggle-btn" onclick="toggleTheme()" title="تبديل وضع الإضاءة">
+        <i id="themeIcon" class="fa-solid fa-sun"></i>
+      </button>
+
+      <a href="3.html" class="btn-login-custom">
+        <i class="fa-solid fa-user-lock"></i>
+        <span data-i18n="loginBtn">تسجيل الدخول</span>
+      </a>
+
+      <a href="#subscribe" class="btn-trial-custom">
+        <i class="fa-solid fa-calendar-days"></i>
+        <span data-i18n="bookBtn">احجز درس تجريبي</span>
+      </a>
+    </div>
+    <button class="menu-toggle" aria-label="فتح القائمة">☰</button>
+  </div>
+</header>
+ 
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> <span data-i18n="heroEyebrow">مصمم خصيصاً للجاليات العربية في الغرب</span></div>
+      <h1 data-i18n="heroTitle">علم أطفالك القرآن والعربية<br><span>برفق وابتكار مع "ميدو"</span></h1>
+      <p class="lead" data-i18n="heroLead">نرافق أطفالك خطوة بخطوة لتعلم قراءة وتجويد القرآن الكريم، وتثبيت اللغة العربية بأسلوب تفاعلي مشوق ومواعيد مرنة تناسب جميع الأوقات في الغربة.</p>
+      <div class="hero-actions">
+        <a href="#tracks" class="btn btn-primary" data-i18n="startJourney">ابدأ الرحلة مجاناً 🚀</a>
+        <a href="#about" class="btn btn-ghost" style="color:var(--paper); border-color:rgba(255,255,255,0.3);" data-i18n="aboutIdea">تعرّف على فكرة المنصة</a>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><b data-i18n="stat1Num">مخصص</b><span data-i18n="stat1Text">لأبناء الجاليات العربية</span></div>
+        <div class="stat"><b data-i18n="stat2Num">فروق التوقيت</b><span data-i18n="stat2Text">مواعيد مرنة 24/7</span></div>
+        <div class="stat"><b data-i18n="stat3Num">100%</b><span data-i18n="stat3Text">تفاعل وترحاب بالصغار</span></div>
+      </div>
+    </div>
+    <div class="character-visual">
+      <div class="character-card">
+        <img src="mido.jpeg" alt="شخصية ميدو الكرتونية">
+        <p style="font-family:var(--display); font-weight:700; color:var(--white); font-size:1rem;" data-i18n="midoQuote">"أهلاً بكم.. أنا ميدو، صديقكم لتعلم القرآن!"</p>
+      </div>
+      <div class="float-tag t1" data-i18n="floatTag1">🪄 القلم السحري للتعلم</div>
+      <div class="float-tag t2" data-i18n="floatTag2">⭐ حفظ ميسر وترتيل</div>
+    </div>
+  </div>
+</section>
+ 
+<section class="section" id="tracks">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag" data-i18n="tracksTag">// المسارات التعليمية</span>
+      <h2 data-i18n="tracksTitle">اختر المسار المناسب لطفلك</h2>
+      <p data-i18n="tracksDesc">برامج مصممة خصيصاً لتناسب أطفال الجاليات العربية في الدول الغربية لتسهيل نطق الحروف وتدبر القرآن.</p>
+    </div>
+    <div class="tracks-grid">
+      <div class="track-card">
+        <span class="num">المسار 01</span>
+        <div class="sym" data-i18n="t1Sym">نور البيان</div>
+        <div class="name" data-i18n="t1Name">تأسيس الحروف والقراءة</div>
+        <div class="desc" data-i18n="t1Desc">تعلم مخارج الحروف الصحيحة، القراءة، والكتابة العربية للأطفال من الصفر بطريقة بصرية مبسطة.</div>
+        <div class="meta"><span data-i18n="t1Age">للأعمار 4 - 8 سنوات</span><a class="go" href="#subscribe" data-i18n="joinNow">انضم الآن ←</a></div>
+      </div>
+      <div class="track-card">
+        <span class="num">المسار 02</span>
+        <div class="sym" data-i18n="t2Sym">الحفظ الميسر</div>
+        <div class="name" data-i18n="t2Name">جزء عمّ والقصار</div>
+        <div class="desc" data-i18n="t2Desc">تحفيظ القرآن الكريم بطرق تفاعلية ممتعة مع ربط الآيات بالمعاني والقيم الأخلاقية بأسلوب يحبه الطفل.</div>
+        <div class="meta"><span data-i18n="t2Age">متابعة فردية</span><a class="go" href="#subscribe" data-i18n="joinNow">انضم الآن ←</a></div>
+      </div>
+      <div class="track-card">
+        <span class="num">المسار 03</span>
+        <div class="sym" data-i18n="t3Sym">أحكام التجويد</div>
+        <div class="name" data-i18n="t3Name">التلاوة الصحيحة للصغار</div>
+        <div class="desc" data-i18n="t3Desc">إتقان أحكام التجويد المبسطة والتلاوة الصحيحة بأسلوب شيق ومحبب للأطفال واليافعين في المهجر.</div>
+        <div class="meta"><span data-i18n="t3Age">شهادات إنجاز</span><a class="go" href="#subscribe" data-i18n="joinNow">انضم الآن ←</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<section class="section" style="background: var(--paper-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);" id="features">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag" data-i18n="featuresTag">// مميزات المنصة للأسر في الغرب</span>
+      <h2 data-i18n="featuresTitle">حلول ذكية تناسب ظروف اغترابكم</h2>
+      <p data-i18n="featuresDesc">ندرك تحديات تربية النشء وتعليم العربية والقرآن في الدول الغربية، وصممنا المنصة لتذليل كل الصعاب.</p>
+    </div>
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">⏰</div>
+        <h3 data-i18n="f1Title">مرونة تامة في المواعيد</h3>
+        <p data-i18n="f1Desc">حصص تتناسب مع جداول المدارس الغربية وتتوافق مع مختلف فروق التوقيت في أمريكا وأوروبا.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3 data-i18n="f2Title">معلمين معتمدين</h3>
+        <p data-i18n="f2Desc">نخبة من المعلمات والمعلمين المتخصصين في إقراء القرآن الكريم وتعليم غير الناطقين بالعربية.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3 data-i18n="f3Title">متابعة دورية للآباء</h3>
+        <p data-i18n="f3Desc">تقارير أسبوعية مفصلة تطلع ولي الأمر على مستوى الحفظ ومواطن القوة والتحسن لدى طفله.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💡</div>
+        <h3 data-i18n="f4Title">شخصية ميدو التفاعلية</h3>
+        <p data-i18n="f4Desc">استخدام الكاركتر الكرتوني المحبوب لتحفيز الأطفال وجعل حصص القرآن متعة حقيقية وليست عبئاً.</p>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<section class="section" id="about">
+  <div class="container about-grid">
+    <div class="about-img-box">
+      <img src="mido.jpeg" alt="شخصية ميدو">
+    </div>
+    <div>
+      <span class="section-tag" data-i18n="aboutTag">// قصة منصة ميدو</span>
+      <h2 style="font-family:var(--display); font-weight:800; font-size:1.9rem; margin-bottom:16px; color:var(--text-dark);" data-i18n="aboutTitle">جسر يربط أطفالنا بكتاب الله</h2>
+      <p style="color:var(--text-mute); margin-bottom:10px;" data-i18n="aboutDesc">نشأت الفكرة لدعم الأسر العربية والمغتربة في الدول الغربية التي تبحث عن بيئة آمنة ونقية لتعليم أطفالهم القرآن الكريم لغةً وثقافةً، بطريقة تفاعلية تبعد الملل وتقرب معاني القرآن لقلوبهم.</p>
+      <div class="credentials">
+        <span class="cred-pill" data-i18n="cred1">معلمين مجازين بالقراءات</span>
+        <span class="cred-pill" data-i18n="cred2">مناهج مبسطة للأطفال بالغرب</span>
+        <span class="cred-pill" data-i18n="cred3">بيئة تعليمية تفاعلية آمنة</span>
+      </div>
+      <a href="#subscribe" class="btn btn-accent" data-i18n="bookConsult">احجز استشارة مجانية 🌟</a>
+    </div>
+  </div>
+</section>
+ 
+<div class="results-strip">
+  <div class="marquee">
+    <span data-i18n="m1">✨ نجاح مستمر في ربط الأبناء بالقرآن الكريم</span>
+    <span data-i18n="m2">🌍 نخدم العائلات العربية في أوروبا وأمريكا وكندا</span>
+    <span data-i18n="m3">⭐ معلمين ومعلمات ذوي خبرة وكفاءة عالية</span>
+    <span data-i18n="m4">💬 تقييمات ممتازة من أولياء الأمور</span>
+    <span data-i18n="m1">✨ نجاح مستمر في ربط الأبناء بالقرآن الكريم</span>
+    <span data-i18n="m2">🌍 نخدم العائلات العربية في أوروبا وأمريكا وكندا</span>
+  </div>
+</div>
+ 
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag" data-i18n="testiTag">// تجارب العائلات</span>
+      <h2 data-i18n="testiTitle">ماذا يقول أولياء الأمور عنا</h2>
+    </div>
+    <div class="testimonials">
+      <div class="t-card">
+        <div class="stars">★★★★★</div>
+        <p data-i18n="t1Text">"أعيش في كندا وكان من الصعب جداً إيجاد معلم مناسب للوقت لدينا، منصة ميدو حلت هذه المشكلة وأولادي يحبون حضور الحصص كثيراً."</p>
+        <div class="t-who"><div class="t-avatar">أ</div><div><b data-i18n="t1Author">أبو حمزة</b><span data-i18n="t1Loc">تورنتو، كندا</span></div></div>
+      </div>
+      <div class="t-card">
+        <div class="stars">★★★★★</div>
+        <p data-i18n="t2Text">"طريقة عرض المنهج بشخصية ميدو جذابة جداً، ابنتي تحسنت في نطق الحروف العربية وتلاوة جزء عم بشكل ملحوظ في شهرين فقط."</p>
+        <div class="t-who"><div class="t-avatar">د</div><div><b data-i18n="t2Author">د. أمينة الراوي</b><span data-i18n="t2Loc">لندن، بريطانيا</span></div></div>
+      </div>
+      <div class="t-card">
+        <div class="stars">★★★★★</div>
+        <p data-i18n="t3Text">"التقارير الأسبوعية ومرونة المواعيد تناسب تماماً ظروف عملنا ودراسة الأطفال هنا في أمريكا. جزاكم الله خيراً."</p>
+        <div class="t-who"><div class="t-avatar">م</div><div><b data-i18n="t3Author">محمد الخطيب</b><span data-i18n="t3Loc">تكساس، أمريكا</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<section class="section" id="faq" style="background: var(--paper-2); border-top: 1px solid var(--line);">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-tag" data-i18n="faqTag">// الأسئلة الشائعة</span>
+      <h2 data-i18n="faqTitle">كل ما تحتاج معرفته عن الانضمام للمنصة</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item open">
+        <button class="faq-q"><span data-i18n="q1">كيف يتم تحديد المواعيد مع اختلاف فروق التوقيت؟</span><span class="plus"><i class="fa-solid fa-chevron-down"></i></span></button>
+        <div class="faq-a"><p data-i18n="a1">نوفر جداول مرنة للغاية تناسب التوقيت المحلي في مختلف دول أوروبا، أمريكا الشمالية، وكندا، بحيث يتم اختيار الوقت الأنسب لعطلة نهاية الأسبوع أو بعد ساعات المدرسة.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span data-i18n="q2">هل الحصص جماعية أم فردية خاصة؟</span><span class="plus"><i class="fa-solid fa-chevron-down"></i></span></button>
+        <div class="faq-a"><p data-i18n="a2">نقدم الخيارين؛ جلسات فردية خاصة تضمن تركيزاً كاملاً مع الطفل، وجلسات تفاعلية مصغرة لمشاركة الحفظ مع أقرانهم.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span data-i18n="q3">كيف يمكن لولي الأمر متابعة تقدم الطفل؟</span><span class="plus"><i class="fa-solid fa-chevron-down"></i></span></button>
+        <div class="faq-a"><p data-i18n="a3">يتلقى ولي الأمر تقريراً دورياً وشاملاً بعد كل حصة يوضح مدى الاستيعاب، وحالة الحفظ، وملاحظات المعلم المباشرة.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q"><span data-i18n="q4">هل تقدمون حصة تجريبية مجانية؟</span><span class="plus"><i class="fa-solid fa-chevron-down"></i></span></button>
+        <div class="faq-a"><p data-i18n="a4">نعم، يمكن لكل عائلة جديدة حجز حصة تقييم وتجربة مجانية تماماً لتحديد المستوى المناسب للطفل.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- قسم حجز الحصة التجريبية (المعدل ليطابق الصورة تماماً) -->
+<section class="section" id="subscribe">
+  <div class="container">
+    <div class="subscribe">
+      <div>
+        <h2 data-i18n="subTitle">جاهز لبدء رحلة طفلك مع القرآن الكريم؟</h2>
+        <p data-i18n="subDesc">احجز الحصة التجريبية المجانية اليوم وانضم لأكاديمية ميدو لتعليم القرآن والعربية لأطفال المهجر.</p>
+      </div>
+      <div class="subscribe-actions">
+        <a href="https://wa.me/" target="_blank" class="btn-sub-outline" data-i18n="subBtn2">
+          <i class="fa-solid fa-headset"></i> تواصل مع الدعم عبر واتساب
+        </a>
+        <a href="https://wa.me/" target="_blank" class="btn-sub-primary" data-i18n="subBtn1">
+          احجز الحصة التجريبية الآن <i class="fa-solid fa-bolt" style="font-size: 0.85rem;"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="color:var(--white); margin-bottom:12px;">
+          <div class="brand-mark"><i class="fa-solid fa-graduation-cap"></i></div>
+          <span data-i18n="brandName">أكاديمية ميدو</span>
+        </div>
+        <p style="font-size:.88rem; max-width:280px;" data-i18n="footerDesc">منصة تعليمية تربط أبناء الجاليات العربية في الدول الغربية بكتاب الله واللغة العربية.</p>
+      </div>
+      <div>
+        <h4 data-i18n="fTracks">المسارات</h4>
+        <ul>
+          <li><a href="#tracks" data-i18n="t1Sym">نور البيان</a></li>
+          <li><a href="#tracks" data-i18n="t2Sym">الحفظ الميسر</a></li>
+          <li><a href="#tracks" data-i18n="t3Sym">أحكام التجويد</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="fQuick">روابط سريعة</h4>
+        <ul>
+          <li><a href="#about" data-i18n="navAbout">قصة ميدو</a></li>
+          <li><a href="#features" data-i18n="navFeatures">مميزات المنصة</a></li>
+          <li><a href="#faq" data-i18n="navFaq">الأسئلة الشائعة</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-i18n="fSocial">تابعنا على السوشيال ميديا</h4>
+        <ul style="display: flex; flex-direction: column; gap: 8px;">
+          <li><a href="https://facebook.com" target="_blank"><i class="fa-brands fa-facebook" style="margin-left: 8px; color: #3b5998; font-size: 1.1rem;"></i> فيسبوك</a></li>
+          <li><a href="https://instagram.com" target="_blank"><i class="fa-brands fa-instagram" style="margin-left: 8px; color: #e1306c; font-size: 1.1rem;"></i> إنستجرام</a></li>
+          <li><a href="https://youtube.com" target="_blank"><i class="fa-brands fa-youtube" style="margin-left: 8px; color: #ff0000; font-size: 1.1rem;"></i> يوتيوب</a></li>
+          <li><a href="https://wa.me/" target="_blank"><i class="fa-brands fa-whatsapp" style="margin-left: 8px; color: #25d366; font-size: 1.1rem;"></i> واتساب</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span data-i18n="copyRight">© 2026 أكاديمية ميدو. جميع الحقوق محفوظة.</span>
+      <span data-i18n="footerSub">مصمم خصيصاً لدعم الجاليات العربية في الغرب</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ويدجت الدعم الفني والشات العائم -->
+<div class="support-widget-wrapper">
+  <div class="live-chat-modal" id="chatModal">
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <span class="chat-header-title">الدعم الفني</span>
+        <span class="chat-header-sub">أكاديمية ميدو</span>
+      </div>
+      <div class="chat-header-controls">
+        <i class="fa-solid fa-minus" id="minimizeChat" title="تصغير"></i>
+        <i class="fa-solid fa-xmark" id="closeChat" title="إغلاق"></i>
+      </div>
+    </div>
+    <div class="chat-body">
+      <div class="chat-bubble">أهلاً بك في منصة أكاديمية ميدو! 👋</div>
+      <div class="chat-bubble">أنا مساعد الدعم الفني، أقدر أساعدك إزاي؟</div>
+      <div class="chat-bubble">عشان تقدر تبعت استفسار أو تتابع تذاكرك، لازم تسجّل دخول الأول.</div>
+      
+      <div class="chat-login-box">
+        <input type="text" placeholder="الإيميل أو رقم الموبايل">
+        <input type="password" placeholder="كلمة السر">
+        <button class="chat-login-btn">سجّل دخول</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="floating-action-buttons">
+    <a href="https://wa.me/" target="_blank" class="float-action-btn whatsapp-btn" title="تواصل معنا عبر الواتساب">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <button class="float-action-btn chat-btn" id="toggleChatBtn" title="الدعم المباشر">
+      <i class="fa-solid fa-comments"></i>
+    </button>
+  </div>
+</div>
+ 
+<script>
+  let currentLang = 'ar';
+  const translations = {
+    ar: {
+      pageTitle: "أكاديمية ميدو | تعليم القرآن الكريم والهوية العربية",
+      brandName: "أكاديمية ميدو",
+      navTracks: "المسارات التعليمية",
+      navFeatures: "مميزات المنصة",
+      navAbout: "قصة ميدو",
+      navFaq: "الأسئلة الشائعة",
+      loginBtn: "تسجيل الدخول",
+      bookBtn: "احجز درس تجريبي",
+      heroEyebrow: "مصمم خصيصاً للجاليات العربية في الغرب",
+      heroTitle: 'علم أطفالك القرآن والعربية<br><span>برفق وابتكار مع "ميدو"</span>',
+      heroLead: "نرافق أطفالك خطوة بخطوة لتعلم قراءة وتجويد القرآن الكريم، وتثبيت اللغة العربية بأسلوب تفاعلي مشوق ومواعيد مرنة تناسب جميع الأوقات في الغربة.",
+      startJourney: "ابدأ الرحلة مجاناً 🚀",
+      aboutIdea: "تعرّف على فكرة المنصة",
+      stat1Num: "مخصص",
+      stat1Text: "لأبناء الجاليات العربية",
+      stat2Num: "فروق التوقيت",
+      stat2Text: "مواعيد مرنة 24/7",
+      stat3Num: "100%",
+      stat3Text: "تفاعل وترحاب بالصغار",
+      midoQuote: '"أهلاً بكم.. أنا ميدو، صديقكم لتعلم القرآن!"',
+      floatTag1: "🪄 القلم السحري للتعلم",
+      floatTag2: "⭐ حفظ ميسر وترتيل",
+      tracksTag: "// المسارات التعليمية",
+      tracksTitle: "اختر المسار المناسب لطفلك",
+      tracksDesc: "برامج مصممة خصيصاً لتناسب أطفال الجاليات العربية في الدول الغربية لتسهيل نطق الحروف وتدبر القرآن.",
+      t1Sym: "نور البيان",
+      t1Name: "تأسيس الحروف والقراءة",
+      t1Desc: "تعلم مخارج الحروف الصحيحة، القراءة، والكتابة العربية للأطفال من الصفر بطريقة بصرية مبسطة.",
+      t1Age: "للأعمار 4 - 8 سنوات",
+      joinNow: "انضم الآن ←",
+      t2Sym: "الحفظ الميسر",
+      t2Name: "جزء عمّ والقصار",
+      t2Desc: "تحفيظ القرآن الكريم بطرق تفاعلية ممتعة مع ربط الآيات بالمعاني والقيم الأخلاقية بأسلوب يحبه الطفل.",
+      t2Age: "متابعة فردية",
+      t3Sym: "أحكام التجويد",
+      t3Name: "التلاوة الصحيحة للصغار",
+      t3Desc: "إتقان أحكام التجويد المبسطة والتلاوة الصحيحة بأسلوب شيق ومحبب للأطفال واليافعين في المهجر.",
+      t3Age: "شهادات إنجاز",
+      featuresTag: "// مميزات المنصة للأسر في الغرب",
+      featuresTitle: "حلول ذكية تناسب ظروف اغترابكم",
+      featuresDesc: "ندرك تحديات تربية النشء وتعليم العربية والقرآن في الدول الغربية، وصممنا المنصة لتذليل كل الصعاب.",
+      f1Title: "مرونة تامة في المواعيد",
+      f1Desc: "حصص تتناسب مع جداول المدارس الغربية وتتوافق مع مختلف فروق التوقيت في أمريكا وأوروبا.",
+      f2Title: "معلمين معتمدين",
+      f2Desc: "نخبة من المعلمات والمعلمين المتخصصين في إقراء القرآن الكريم وتعليم غير الناطقين بالعربية.",
+      f3Title: "متابعة دورية للآباء",
+      f3Desc: "تقارير أسبوعية مفصلة تطلع ولي الأمر على مستوى الحفظ ومواطن القوة والتحسن لدى طفله.",
+      f4Title: "شخصية ميدو التفاعلية",
+      f4Desc: "استخدام الكاركتر الكرتوني المحبوب لتحفيز الأطفال وجعل حصص القرآن متعة حقيقية وليست عبئاً.",
+      aboutTag: "// قصة منصة ميدو",
+      aboutTitle: "جسر يربط أطفالنا بكتاب الله",
+      aboutDesc: "نشأت الفكرة لدعم الأسر العربية والمغتربة في الدول الغربية التي تبحث عن بيئة آمنة ونقية لتعليم أطفالهم القرآن الكريم لغةً وثقافةً، بطريقة تفاعلية تبعد الملل وتقرب معاني القرآن لقلوبهم.",
+      cred1: "معلمين مجازين بالقراءات",
+      cred2: "مناهج مبسطة للأطفال بالغرب",
+      cred3: "بيئة تعليمية تفاعلية آمنة",
+      bookConsult: "احجز استشارة مجانية 🌟",
+      m1: "✨ نجاح مستمر في ربط الأبناء بالقرآن الكريم",
+      m2: "🌍 نخدم العائلات العربية في أوروبا وأمريكا وكندا",
+      m3: "⭐ معلمين ومعلمات ذوي خبرة وكفاءة عالية",
+      m4: "💬 تقييمات ممتازة من أولياء الأمور",
+      testiTag: "// تجارب العائلات",
+      testiTitle: "ماذا يقول أولياء الأمور عنا",
+      t1Text: '"أعيش في كندا وكان من الصعب جداً إيجاد معلم مناسب للوقت لدينا، منصة ميدو حلت هذه المشكلة وأولادي يحبون حضور الحصص كثيراً."',
+      t1Author: "أبو حمزة",
+      t1Loc: "تورنتو، كندا",
+      t2Text: '"طريقة عرض المنهج بشخصية ميدو جذابة جداً، ابنتي تحسنت في نطق الحروف العربية وتلاوة جزء عم بشكل ملحوظ في شهرين فقط."',
+      t2Author: "د. أمينة الراوي",
+      t2Loc: "لندن، بريطانيا",
+      t3Text: '"التقارير الأسبوعية ومرونة المواعيد تناسب تماماً ظروف عملنا ودراسة الأطفال هنا في أمريكا. جزاكم الله خيراً."',
+      t3Author: "محمد الخطيب",
+      t3Loc: "تكساس، أمريكا",
+      faqTag: "// الأسئلة الشائعة",
+      faqTitle: "كل ما تحتاج معرفته عن الانضمام للمنصة",
+      q1: "كيف يتم تحديد المواعيد مع اختلاف فروق التوقيت؟",
+      a1: "نوفر جداول مرنة للغاية تناسب التوقيت المحلي في مختلف دول أوروبا، أمريكا الشمالية، وكندا، بحيث يتم اختيار الوقت الأنسب لعطلة نهاية الأسبوع أو بعد ساعات المدرسة.",
+      q2: "هل الحصص جماعية أم فردية خاصة؟",
+      a2: "نقدم الخيارين؛ جلسات فردية خاصة تضمن تركيزاً كاملاً مع الطفل، وجلسات تفاعلية مصغرة لمشاركة الحفظ مع أقرانهم.",
+      q3: "كيف يمكن لولي الأمر متابعة تقدم الطفل؟",
+      a3: "يتلقى ولي الأمر تقريراً دورياً وشاملاً بعد كل حصة يوضح مدى الاستيعاب، وحالة الحفظ، وملاحظات المعلم المباشرة.",
+      q4: "هل تقدمون حصة تجريبية مجانية؟",
+      a4: "نعم، يمكن لكل عائلة جديدة حجز حصة تقييم وتجربة مجانية تماماً لتحديد المستوى المناسب للطفل.",
+      subTitle: "جاهز لبدء رحلة طفلك مع القرآن الكريم؟",
+      subDesc: "احجز الحصة التجريبية المجانية اليوم وانضم لأكاديمية ميدو لتعليم القرآن والعربية لأطفال المهجر.",
+      subBtn1: "احجز الحصة التجريبية الآن 🚀",
+      subBtn2: "تواصل مع الدعم عبر واتساب",
+      fTracks: "المسارات",
+      fQuick: "روابط سريعة",
+      fSocial: "تابعنا على السوشيال ميديا",
+      copyRight: "© 2026 أكاديمية ميدو. جميع الحقوق محفوظة.",
+      footerSub: "مصمم خصيصاً لدعم الجاليات العربية في الغرب",
+      footerDesc: "منصة تعليمية تربط أبناء الجاليات العربية في الدول الغربية بكتاب الله واللغة العربية."
+    },
+    en: {
+      pageTitle: "Mido Academy | Quran & Arabic Identity Education",
+      brandName: "Mido Academy",
+      navTracks: "Learning Tracks",
+      navFeatures: "Platform Features",
+      navAbout: "Mido's Story",
+      navFaq: "FAQ",
+      loginBtn: "Login",
+      bookBtn: "Book Trial Lesson",
+      heroEyebrow: "Designed specifically for Arab expatriates in the West",
+      heroTitle: 'Teach Your Kids Quran & Arabic<br><span>with Care & Innovation with "Mido"</span>',
+      heroLead: "We accompany your children step-by-step to learn Quran recitation and solidify the Arabic language through engaging interactive methods with flexible schedules.",
+      startJourney: "Start Journey Free 🚀",
+      aboutIdea: "Discover Platform Idea",
+      stat1Num: "Dedicated",
+      stat1Text: "For Arab Expat Families",
+      stat2Num: "Time Zones",
+      stat2Text: "Flexible 24/7 Schedules",
+      stat3Num: "100%",
+      stat3Text: "Interactive & Kid-Friendly",
+      midoQuote: '"Welcome! I am Mido, your friend to learn the Quran!"',
+      floatTag1: "🪄 Magic Learning Pen",
+      floatTag2: "⭐ Easy Memorization",
+      tracksTag: "// LEARNING TRACKS",
+      tracksTitle: "Choose the Right Track for Your Child",
+      tracksDesc: "Programs specially designed for children of Arab diaspora in Western countries to facilitate letter pronunciation and Quran reflection.",
+      t1Sym: "Noor Al-Bayan",
+      t1Name: "Letters & Reading Foundation",
+      t1Desc: "Learn correct letter articulation, reading, and Arabic writing for children from scratch using simplified visuals.",
+      t1Age: "Ages 4 - 8 years",
+      joinNow: "Join Now ←",
+      t2Sym: "Easy Memorization",
+      t2Name: "Juz Amma & Short Surahs",
+      t2Desc: "Memorize the Quran through fun interactive methods linking verses to moral values in a child-friendly way.",
+      t2Age: "Individual Follow-up",
+      t3Sym: "Tajweed Rules",
+      t3Name: "Correct Recitation for Kids",
+      t3Desc: "Master simplified Tajweed rules and correct recitation in an engaging way for children and youth abroad.",
+      t3Age: "Achievement Certificates",
+      featuresTag: "// PLATFORM FEATURES FOR FAMILIES ABROAD",
+      featuresTitle: "Smart Solutions Suiting Your Expat Life",
+      featuresDesc: "We understand the challenges of raising youth and teaching Arabic and Quran in Western countries, designing the platform to ease all obstacles.",
+      f1Title: "Total Schedule Flexibility",
+      f1Desc: "Classes fit Western school timetables and various time zones across America and Europe.",
+      f2Title: "Certified Teachers",
+      f2Desc: "Elite teachers specialized in Quran recitation and teaching Arabic to non-native speakers.",
+      f3Title: "Periodic Parent Updates",
+      f3Desc: "Detailed weekly reports updating parents on memorization levels and child progress.",
+      f4Title: "Interactive Mido Character",
+      f4Desc: "Using the beloved cartoon character to motivate children and make Quran classes a true joy.",
+      aboutTag: "// MIDO PLATFORM STORY",
+      aboutTitle: "A Bridge Connecting Our Children to the Book of Allah",
+      aboutDesc: "The idea originated to support Arab and expat families in Western countries seeking a safe environment to teach children the Quran and Arabic language and culture.",
+      cred1: "Certified Quran Reciters",
+      cred2: "Simplified Curricula for Kids Abroad",
+      cred3: "Safe Interactive Learning Environment",
+      bookConsult: "Book Free Consultation 🌟",
+      m1: "✨ Continuous success in connecting children to the Quran",
+      m2: "🌍 Serving Arab families in Europe, America, and Canada",
+      m3: "⭐ Highly experienced and competent teachers",
+      m4: "💬 Excellent reviews from parents",
+      testiTag: "// FAMILY EXPERIENCES",
+      testiTitle: "What Parents Say About Us",
+      t1Text: '"I live in Canada and it was very hard to find a suitable teacher for our time slot. Mido Academy solved this and my kids love attending classes."',
+      t1Author: "Abu Hamza",
+      t1Loc: "Toronto, Canada",
+      t2Text: '"The curriculum presentation with Mido character is very attractive. My daughter improved in Arabic letter pronunciation and Juz Amma recitation in just two months."',
+      t2Author: "Dr. Amina Al-Rawi",
+      t2Loc: "London, UK",
+      t3Text: '"Weekly reports and schedule flexibility perfectly suit our work and kids school conditions here in America. May Allah reward you."',
+      t3Author: "Mohammed Al-Khatib",
+      t3Loc: "Texas, USA",
+      faqTag: "// FAQ",
+      faqTitle: "Everything You Need to Know About Joining",
+      q1: "How are schedules set with different time zones?",
+      a1: "We provide extremely flexible schedules matching local times across Europe, North America, and Canada, choosing the best weekend or post-school times.",
+      q2: "Are classes group or private one-on-one?",
+      a2: "We offer both options: private one-on-one sessions ensuring full focus with the child, and small interactive sessions to share memorization with peers.",
+      q3: "How can parents track child progress?",
+      a3: "Parents receive a regular comprehensive report after each class detailing comprehension, memorization status, and direct teacher notes.",
+      q4: "Do you offer a free trial class?",
+      a4: "Yes, every new family can book a completely free evaluation and trial class to determine the appropriate level for the child.",
+      subTitle: "Ready to Start Your Child's Quran Journey?",
+      subDesc: "Book your free trial class today and join Mido Academy for Quran and Arabic education for expat children.",
+      subBtn1: "Book Trial Class Now 🚀",
+      subBtn2: "Contact Support via WhatsApp",
+      fTracks: "Tracks",
+      fQuick: "Quick Links",
+      fSocial: "Follow Us on Social Media",
+      copyRight: "© 2026 Mido Academy. All rights reserved.",
+      footerSub: "Designed specially to support Arab communities in the West",
+      footerDesc: "An educational platform connecting children of Arab diaspora in Western countries to the Book of Allah and Arabic language."
+    }
+  };
+
+  function toggleLanguage() {
+    currentLang = currentLang === 'ar' ? 'en' : 'ar';
+    document.documentElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+    document.documentElement.setAttribute('lang', currentLang);
+    document.getElementById('langText').innerText = currentLang === 'ar' ? 'EN' : 'AR';
+    
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[currentLang][key]) {
+        el.innerHTML = translations[currentLang][key];
+      }
+    });
+  }
+
+  function toggleTheme() {
+    const body = document.body;
+    const themeIcon = document.getElementById('themeIcon');
+    const btn = document.querySelector('.theme-toggle-btn');
+    
+    btn.classList.add('rotating');
+    setTimeout(() => {
+      body.classList.toggle('dark-mode');
+      if (body.classList.contains('dark-mode')) {
+        themeIcon.className = 'fa-solid fa-moon';
+        localStorage.setItem('mido_theme', 'dark');
+      } else {
+        themeIcon.className = 'fa-solid fa-sun';
+        localStorage.setItem('mido_theme', 'light');
+      }
+      btn.classList.remove('rotating');
+    }, 300);
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('mido_theme') === 'dark') {
+      document.body.classList.add('dark-mode');
+      const themeIcon = document.getElementById('themeIcon');
+      if(themeIcon) themeIcon.className = 'fa-solid fa-moon';
+    }
+  });
+
+  document.querySelectorAll('.faq-q').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const item = btn.closest('.faq-item');
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+      if(!wasOpen) item.classList.add('open');
+    });
+  });
+ 
+  const toggle = document.querySelector('.menu-toggle');
+  const links = document.querySelector('.nav-links');
+  toggle.addEventListener('click', ()=>{
+    const isOpen = links.style.display === 'flex';
+    links.style.display = isOpen ? 'none' : 'flex';
+    links.style.flexDirection = 'column';
+    links.style.position='absolute';
+    links.style.top='68px';
+    links.style.right='0';
+    links.style.left='0';
+    links.style.background='var(--paper-2)';
+    links.style.padding='20px 24px';
+    links.style.gap='16px';
+    links.style.borderBottom='1px solid var(--line)';
+    links.style.boxShadow='0 10px 25px rgba(0,0,0,0.05)';
+  });
+</script>
+ 
+</body>
+</html>
